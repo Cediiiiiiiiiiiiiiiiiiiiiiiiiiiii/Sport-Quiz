@@ -1,24 +1,25 @@
 import streamlit as st
-import random
 
-# --- Seiten-Setup ---
-st.set_page_config(page_title="Sportethik-Quiz", layout="centered", initial_sidebar_state="collapsed")
+# Seitenlayout + Style
+st.set_page_config(page_title="Sportethik-Quiz", layout="centered")
 st.markdown("""
     <style>
-        body {background-color: #e6f0ff;}
-        .question-img {border-radius: 10px; margin-bottom: 1rem;}
+    [data-testid="stAppViewContainer"] > .main {
+        background-color: #e6f0ff;
+        padding: 2rem;
+    }
     </style>
 """, unsafe_allow_html=True)
 
-# --- Einleitungs-Text ---
+# Titel und Einleitung
 st.title("⚽ Sportethik-Quiz")
 st.markdown("**Mein Sportsfreund...** Mal sehen, wie fair du bist – sei ehrlich! 💬")
 spielername = st.text_input("Wie heißt du?")
 
-# --- Fragen mit Bildern ---
+# Fragen vorbereiten
 fragen = [
     {
-        "bild": "https://images.unsplash.com/photo-1517649763962-0c623066013b",  # Fußball-Foul
+        "bild": "https://images.unsplash.com/photo-1606214174585-9c97e5baed90",  # Fußballspiel
         "text": "Ein Spieler foult – was tust du?",
         "antworten": [
             ("✅ Ich melde es sofort – Fairplay!", 5),
@@ -27,23 +28,23 @@ fragen = [
         ]
     },
     {
-        "bild": "https://images.unsplash.com/photo-1547347298-4074fc3086f0",  # Schwimmen
+        "bild": "https://images.unsplash.com/photo-1547347298-4074fc3086f0",  # Schwimmer
         "text": "Du siehst, wie jemand beim Schwimmen abkürzt.",
         "antworten": [
             ("✅ Ich melde es dem Trainer.", 5),
             ("😐 Ich bin mir nicht ganz sicher…", 3),
             ("❌ Ist doch sein Problem, nicht meins.", 1)
         ]
-    },
-    # Weitere Fragen können hier ergänzt werden...
+    }
+    # Weitere Fragen lassen sich hier leicht hinzufügen
 ]
 
-# --- Fortschritt & Zustand ---
+# Session-State vorbereiten
 if "frage_index" not in st.session_state:
     st.session_state.frage_index = 0
     st.session_state.punkte = []
 
-# --- Quiz anzeigen, wenn Name vorhanden ---
+# Nur wenn ein Name eingegeben wurde
 if spielername:
     frage_index = st.session_state.frage_index
 
@@ -59,7 +60,7 @@ if spielername:
                     st.session_state.punkte.append(wert)
                     break
             st.session_state.frage_index += 1
-            st.experimental_rerun()
+            st.rerun()
 
     else:
         avg = sum(st.session_state.punkte) / len(st.session_state.punkte)
