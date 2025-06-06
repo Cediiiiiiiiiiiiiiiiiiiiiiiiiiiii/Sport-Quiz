@@ -46,27 +46,6 @@ fragen = [
         ]
     },
     {
-        "bild": "streamlit as st
-
-# Seitenlayout + Style
-st.set_page_config(page_title="Sportethik-Quiz", layout="centered")
-st.markdown("""
-    <style>
-    html, body, [data-testid="stAppViewContainer"] > .main {
-        background-color: #d0e7ff;
-        padding: 2rem;
-    }
-    </style>
-""", unsafe_allow_html=True)
-
-# Titel und Einleitung
-st.title("⚽ Sportethik-Quiz")
-st.markdown("**Mein Sportsfreund...** Mal sehen, wie fair du bist – sei ehrlich! 💬")
-spielername = st.text_input("Wie heißt du?")
-
-# Fragen vorbereiten mit stabilen Bildquellen
-fragen = [
-    {
         "bild": "https://shootscoresoccer.com/wp-content/uploads/2022/01/How-to-Tackle-in-Soccer.jpg",
         "text": "Ein Spieler foult – was tust du?",
         "antworten": [
