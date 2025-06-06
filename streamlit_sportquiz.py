@@ -5,7 +5,7 @@ st.set_page_config(page_title="Sportethik-Quiz", layout="centered")
 st.markdown("""
     <style>
     [data-testid="stAppViewContainer"] > .main {
-        background-color: #e6f0ff;
+        background-color: #d0e7ff;
         padding: 2rem;
     }
     </style>
@@ -19,7 +19,7 @@ spielername = st.text_input("Wie heißt du?")
 # Fragen vorbereiten
 fragen = [
     {
-        "bild": "https://images.unsplash.com/photo-1606214174585-9c97e5baed90",  # Fußballspiel
+        "bild": "https://images.unsplash.com/photo-1618424181686-90f6ce22a2f3",  # Fußball-Foul
         "text": "Ein Spieler foult – was tust du?",
         "antworten": [
             ("✅ Ich melde es sofort – Fairplay!", 5),
@@ -28,23 +28,92 @@ fragen = [
         ]
     },
     {
-        "bild": "https://images.unsplash.com/photo-1547347298-4074fc3086f0",  # Schwimmer
-        "text": "Du siehst, wie jemand beim Schwimmen abkürzt.",
+        "bild": "https://images.unsplash.com/photo-1584467735871-3d84d35f5823",  # Schwalbe
+        "text": "Du könntest mit einer Schwalbe einen Elfer bekommen.",
         "antworten": [
-            ("✅ Ich melde es dem Trainer.", 5),
+            ("✅ Ich bleibe aufrecht – keine Lüge.", 5),
+            ("😐 Ich lasse mich leicht fallen…", 3),
+            ("❌ Ich täusche klar – Elfer ist Elfer!", 1)
+        ]
+    },
+    {
+        "bild": "https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b",  # Doping
+        "text": "Ein Freund will, dass du seine Dopingprobe vertauschst.",
+        "antworten": [
+            ("✅ Kommt nicht in Frage – unfair!", 5),
+            ("😐 Ich denke darüber nach…", 3),
+            ("❌ Klar – wir müssen gewinnen!", 1)
+        ]
+    },
+    {
+        "bild": "https://images.unsplash.com/photo-1502810190503-830027b2a58b",  # Verletzter Gegner
+        "text": "Ein Gegner liegt verletzt, aber ihr greift an.",
+        "antworten": [
+            ("✅ Ich spiele den Ball ins Aus.", 5),
+            ("😐 Ich zögere erstmal.", 3),
+            ("❌ Ich spiele sofort weiter!", 1)
+        ]
+    },
+    {
+        "bild": "https://images.unsplash.com/photo-1563298723-dcfebaa392e3",  # Zu viele Spieler
+        "text": "Ihr habt zu viele Spieler auf dem Feld.",
+        "antworten": [
+            ("✅ Ich sage es sofort.", 5),
+            ("😐 Ich tue so, als ob nichts wär.", 3),
+            ("❌ Ich verschweige es aktiv.", 1)
+        ]
+    },
+    {
+        "bild": "https://images.unsplash.com/photo-1517649763962-0c623066013b",  # Ball im Aus
+        "text": "Du hast gesehen, dass der Ball im Aus war.",
+        "antworten": [
+            ("✅ Ich sage es direkt!", 5),
             ("😐 Ich bin mir nicht ganz sicher…", 3),
-            ("❌ Ist doch sein Problem, nicht meins.", 1)
+            ("❌ Ich schweige – Schiri soll's sehen.", 1)
+        ]
+    },
+    {
+        "bild": "https://images.unsplash.com/photo-1616789911239-45fc503f1556",  # Traineranweisung
+        "text": "Dein Trainer fordert dich auf, ein Foul zu simulieren.",
+        "antworten": [
+            ("✅ Ich lehne das ab!", 5),
+            ("😐 Ich überlege kurz…", 3),
+            ("❌ Ich mache es für den Sieg!", 1)
+        ]
+    },
+    {
+        "bild": "https://images.unsplash.com/photo-1593113595264-cd38b1cd8fbe",  # Interview
+        "text": "Nach dem Spiel wirst du interviewt: Ehrlich oder nicht?",
+        "antworten": [
+            ("✅ Ich sage die Wahrheit.", 5),
+            ("😐 Ich bleibe vage.", 3),
+            ("❌ Ich lüge zum Schutz des Teams.", 1)
+        ]
+    },
+    {
+        "bild": "https://images.unsplash.com/photo-1571019614242-c5c5dee9f50b",  # Teambesprechung
+        "text": "Sollst du deinem Team Fehlverhalten ansprechen?",
+        "antworten": [
+            ("✅ Ja – Verantwortung zeigen!", 5),
+            ("😐 Ich rede privat mit jemandem.", 3),
+            ("❌ Ich sage gar nichts.", 1)
+        ]
+    },
+    {
+        "bild": "https://images.unsplash.com/photo-1521412644187-c49fa049e84d",  # Publikum
+        "text": "Im Finale sollst du unfair spielen – was tun?",
+        "antworten": [
+            ("✅ Ich bleibe meinem Gewissen treu.", 5),
+            ("😐 Ich mache mit Bauchweh mit.", 3),
+            ("❌ Ich ziehe’s voll durch!", 1)
         ]
     }
-    # Weitere Fragen lassen sich hier leicht hinzufügen
 ]
 
-# Session-State vorbereiten
 if "frage_index" not in st.session_state:
     st.session_state.frage_index = 0
     st.session_state.punkte = []
 
-# Nur wenn ein Name eingegeben wurde
 if spielername:
     frage_index = st.session_state.frage_index
 
