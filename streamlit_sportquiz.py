@@ -1,4 +1,4 @@
-streamlit as st
+import streamlit as st
 
 # Seitenlayout + Style
 st.set_page_config(page_title="Sportethik-Quiz", layout="centered")
