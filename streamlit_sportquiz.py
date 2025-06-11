@@ -13,7 +13,7 @@ st.markdown("""
 
 # Titel und Einleitung
 st.title("⚽ Sportethik-Quiz")
-st.markdown("**Mein Sportsfreund...** Mal sehen, wie fair du bist – sei ehrlich! 💬")
+st.markdown("**Mein Sportsfreund...** Mal sehen, wie fair du bist – sei doch ehrlich! 💬")
 spielername = st.text_input("Wie heißt du?")
 
 # Fragen vorbereiten mit stabilen Bildquellen
@@ -22,63 +22,63 @@ fragen = [
         "bild": "https://shootscoresoccer.com/wp-content/uploads/2022/01/How-to-Tackle-in-Soccer.jpg",
         "text": "Ein Spieler foult – was tust du?",
         "antworten": [
-            ("✅ Ich melde es sofort – Fairplay!", 5),
+            ("✅ Ich melde es sofort, Fairplay!", 5),
             ("😐 Ich warte, ob der Schiri was sieht.", 3),
-            ("❌ Ich schweige – Vorteil nutzen!", 1)
+            ("❌ Ich schweige, wir müssen den Vorteil nutzen!", 1)
         ]
     },
     {
         "bild": "https://img.zeit.de/sport/2017-03/arjen-robben-schwalbe/wide__1000x562__desktop__scale_2",
         "text": "Du könntest mit einer Schwalbe einen Elfer bekommen.",
         "antworten": [
-            ("✅ Ich bleibe aufrecht – keine Lüge.", 5),
+            ("✅ Ich bleibe aufrecht.", 5),
             ("😐 Ich lasse mich leicht fallen…", 3),
-            ("❌ Ich täusche klar – Elfer ist Elfer!", 1)
+            ("❌ Ich täusche klar, Elfer ist Elfer!", 1)
         ]
     },
     {
-        "bild": "https://thumbs.dreamstime.com/z/test-rohr-mit-blutprobe-f%C3%BCr-doping-test-78831563.jpg?ct=jpeg",
+        "bild": "https://cdn.dmcl.biz/media/image/99697/o/GettyImages-501532292.jpg",
         "text": "Ein Freund will, dass du seine Dopingprobe vertauschst.",
         "antworten": [
-            ("✅ Kommt nicht in Frage – unfair!", 5),
+            ("✅ Kommt nicht in Frage, das ist unfair!", 5),
             ("😐 Ich denke darüber nach…", 3),
-            ("❌ Klar – wir müssen gewinnen!", 1)
+            ("❌ Klar, wir müssen gewinnen!", 1)
         ]
     },
     {
-        "bild": "https://shootscoresoccer.com/wp-content/uploads/2022/01/How-to-Tackle-in-Soccer.jpg",
-        "text": "Ein Spieler foult – was tust du?",
+        "bild": "https://www.dbs-npc.de/assets/images/6/20160911-sw-102323-15400-okr_hp-59a2adee.jpg",
+        "text": "Ein Teamkollege springt beim Staffelstart zu früh ins Wasser, aber der Schiedsrichter merkt es nicht. Was tust du?",
         "antworten": [
-            ("✅ Ich melde es sofort – Fairplay!", 5),
-            ("😐 Ich warte, ob der Schiri was sieht.", 3),
-            ("❌ Ich schweige – Vorteil nutzen!", 1)
+            ("✅ Ich melde den Frühstart, Ehrlichkeit zählt.", 5),
+            ("😐 Ich frage zuerst den Rest des Teams, ob wir es zugeben wollen.", 3),
+            ("❌Ich sage nichts, Pech für die anderen.", 1)
         ]
     },
     {
-        "bild": "https://img.zeit.de/sport/2017-03/arjen-robben-schwalbe/wide__1000x562__desktop__scale_2",
-        "text": "Du könntest mit einer Schwalbe einen Elfer bekommen.",
+        "bild": "https://cdn.arstechnica.net/wp-content/uploads/2019/04/basketballTOP.jpg",
+        "text": "Du merkst das du den Basketball noch berührt hast bevor er ins aus ging, doch der Schiri gibt euch den Einwurf, was tust du?",
         "antworten": [
-            ("✅ Ich bleibe aufrecht – keine Lüge.", 5),
-            ("😐 Ich lasse mich leicht fallen…", 3),
-            ("❌ Ich täusche klar – Elfer ist Elfer!", 1)
+            ("✅ Ich sage dem Schiri, dass ich ihn noch berührt habe.", 5),
+            ("😐 Ich warte und schaue ob jemand protestiert.", 3),
+            ("❌ Ich nehme es dankend an und nutze die Chance.", 1)
         ]
     },
     {
-        "bild": "https://thumbs.dreamstime.com/z/test-rohr-mit-blutprobe-f%C3%BCr-doping-test-78831563.jpg?ct=jpeg",
-        "text": "Ein Freund will, dass du seine Dopingprobe vertauschst.",
+        "bild": "https://e6.365dm.de/23/02/1600x900/skysport_de-shiffrin-riesenslalom_6059422.jpg?20230216133332",
+        "text": "Beim Riesenslalom bemerkt niemand, dass du ein Tor ausgelassen hast. Du wärst mit der Zeit unter den Top 3. Was tust du?",
         "antworten": [
-            ("✅ Kommt nicht in Frage – unfair!", 5),
-            ("😐 Ich denke darüber nach…", 3),
-            ("❌ Klar – wir müssen gewinnen!", 1)
+            ("✅ Ich melde es sobald ich unten angekommen bin.", 5),
+            ("😐 Ich hoffe, dass es niemand gesehen hat.", 3),
+            ("❌ Ich sage nichts und hol mir meine Medallie. ", 1)
         ]
     },
     {
-        "bild": "",
+        "bild": "https://static01.nyt.com/images/2014/07/05/sports/sub-brazilcup1/sub-brazilcup1-master1050.jpg",
         "text": "Ein Gegner liegt verletzt, aber ihr greift an.",
         "antworten": [
             ("✅ Ich spiele den Ball ins Aus.", 5),
             ("😐 Ich zögere erstmal.", 3),
-            ("❌ Ich spiele sofort weiter!", 1)
+            ("❌ Ich spiele sofort weiter, wir haben Überzahl!", 1)
         ]
     },
     {
@@ -91,21 +91,21 @@ fragen = [
         ]
     },
     {
-        "bild": "https://www.susanzaro.com/site/wp-content/uploads/2015/06/ball-out-300x224.jpg",
-        "text": "Du hast gesehen, dass der Ball im Aus war.",
+        "bild": "https://www.felsland-teamtage.de/media/k2/items/cache/867519228d1d5325856fc61d710ded0e_L.jpg",
+        "text": "Du bemerkst, dass dein Zielstand falsch kalibriert ist, der nächste Schütze könnte benachteiligt sein. Was tust du?",
         "antworten": [
-            ("✅ Ich sage es direkt!", 5),
-            ("😐 Ich bin mir nicht ganz sicher…", 3),
-            ("❌ Ich schweige – Schiri soll's sehen.", 1)
+            ("✅ Ich melde das sofort dem Kampfrichter.", 5),
+            ("😐 Ich sage es nur, wenn es jemanden auffällt.", 3),
+            ("❌ Ich ignoriere es, betrifft mich nicht.", 1)
         ]
     },
     {
-        "bild": "https://upload.wikimedia.org/wikipedia/commons/8/8d/Soccer_coach.jpg",
-        "text": "Dein Trainer fordert dich auf, ein Foul zu simulieren.",
+        "bild": "https://th.bing.com/th/id/R.313f17bdcb36bd1ca50daff3bd2db3e4?rik=cJuPucJIX1YEYQ&pid=ImgRaw&r=0",
+        "text": "Du weisst das dein Gegner im Ring schon mehrfach sein rechtes Bein gebrochen hat und es nie ganz verheilt ist, was tust du?.",
         "antworten": [
-            ("✅ Ich lehne das ab!", 5),
-            ("😐 Ich überlege kurz…", 3),
-            ("❌ Ich mache es für den Sieg!", 1)
+            ("✅ Ich trete ihm extra nicht dagegen.", 5),
+            ("😐 Wenn er zu Krass die Oberhand hat, trete ich vielleicht einmal dagegen. ", 3),
+            ("❌ Ich fokussiere mich nur auf das Bein!", 1)
         ]
     },
     {
@@ -118,16 +118,16 @@ fragen = [
         ]
     },
     {
-        "bild": "https://upload.wikimedia.org/wikipedia/commons/2/25/Football_team_huddle.jpg",
-        "text": "Sollst du deinem Team Fehlverhalten ansprechen?",
+        "bild": "https://th.bing.com/th/id/R.035ac5351116b3f8d593f50f6019fbdb?rik=QQes4iNVI3m5WA&pid=ImgRaw&r=0",
+        "text": "Beim Bodenturnen lief dir Wettbewerb nicht gut, aber du hast gesehen wie dein Trainer der Jury Geld zusteckte und gewinnst Gold, was tust du?",
         "antworten": [
-            ("✅ Ja – Verantwortung zeigen!", 5),
-            ("😐 Ich rede privat mit jemandem.", 3),
-            ("❌ Ich sage gar nichts.", 1)
+            ("✅ Ich melde es dem Verband und erkenne den unfairen Sieg nicht an. ", 5),
+            ("😐 Ich warte ab ob jemand sich beklagt und gib es dann zu.", 3),
+            ("❌ Ich sage gar nichts, ich habe nichts gesehen...", 1)
         ]
     },
     {
-        "bild": "https://upload.wikimedia.org/wikipedia/commons/3/34/Olympic_flag_with_crowd.jpg",
+        "bild": "https://www.middleeasteye.net/sites/default/files/styles/article_page/public/images-story/Qatar-World-Cup-Argentina-December-2022-AFP.jpg.webp?itok=zZCpLq3-",
         "text": "Im Finale sollst du unfair spielen – was tun?",
         "antworten": [
             ("✅ Ich bleibe meinem Gewissen treu.", 5),
@@ -169,19 +169,19 @@ if spielername:
         elif avg >= 3.5:
             typ = "📐 Moralischer Stratege"
             athlet = "Lionel Messi"
-            bild = "https://upload.wikimedia.org/wikipedia/commons/8/80/Lionel_Messi_20180626.jpg"
+            bild = "https://assets.goal.com/v3/assets/bltcc7a7ffd2fbf71f5/bltf7695f98c1f01bd9/62cbfb91c9db8842cf76cb5b/GHP_MESSI-BOOTS_16-9.jpg?auto=webp&format=pjpg&width=3840&quality=60"
         elif avg >= 2.5:
             typ = "⚖️ Kontrollierter Pragmatiker"
             athlet = "Serena Williams"
-            bild = "https://upload.wikimedia.org/wikipedia/commons/4/4b/Serena_Williams_2013_US_Open.jpg"
+            bild = "https://th.bing.com/th/id/OIP.E6ceK3TePOweDrQrvQCMBwHaFj?rs=1&pid=ImgDetMain"
         elif avg >= 1.5:
             typ = "🎭 Opportunist"
-            athlet = "Diego Maradona"
+            athlet = "https://cdn.britannica.com/76/124976-050-E03E50CE/Diego-Maradona-1986.jpg"
             bild = "https://upload.wikimedia.org/wikipedia/commons/5/5f/Maradona_versus_Belgium_1982.jpg"
         else:
             typ = "🤑 Egoist"
             athlet = "Flavio Briatore"
-            bild = "https://upload.wikimedia.org/wikipedia/commons/7/78/Flavio_Briatore_2012.jpg"
+            bild = "https://www.monaco-tribune.com/wp-content/uploads/2020/11/flavio-briatore-min.jpg"
 
         st.success(f"**Ergebnis für {spielername}:**")
         st.image(bild, caption=athlet, width=300)
