@@ -7,8 +7,8 @@ import time
 st.set_page_config(page_title="Sportethik-Quiz", layout="centered")
 st.markdown("""
     <style>
-    html, body, [data-testid="stAppViewContainer"] > .main {
-        background: linear-gradient(135deg, #d0e7ff, #f0f9ff);
+    html, body, [data-testid=\"stAppViewContainer\"] > .main {
+        background: linear-gradient(to right, #e0f7fa, #ffffff);
         padding: 2rem;
         font-family: 'Segoe UI', sans-serif;
     }
@@ -163,7 +163,8 @@ if "frage_index" not in st.session_state:
     st.session_state.timer_start = time.time()
 
 elapsed_time = int(time.time() - st.session_state.timer_start)
-st.markdown(f"⏱️ **Verstrichene Zeit:** {elapsed_time} Sekunden")
+st.markdown(f"⏱️ **Verstrichene Zeit:** {elapsed_time} Sekunden  ")
+st.caption("(Nur zur Orientierung – kein Zeitlimit, nimm dir ruhig Zeit zum Nachdenken!)")
 
 if spielername:
     frage_index = st.session_state.frage_index
@@ -173,7 +174,8 @@ if spielername:
         frage = fragen[frage_index]
 
         # Fortschrittsbalken anzeigen
-        st.progress((frage_index + 1) / total_fragen)
+        st.progress((frage_index + 1)
+        st.markdown("<style>.element-container:has(.stProgress) + div {display: none;}</style>", unsafe_allow_html=True) / total_fragen)
 
         with st.container():
             st.markdown(f"<div class='question-block'>", unsafe_allow_html=True)
@@ -182,7 +184,7 @@ if spielername:
             st.image(frage["bild"], use_container_width=True)
 
             auswahl = st.radio("Wähle deine Antwort:", [a[0] for a in frage["antworten"]], key=frage_index)
-            if st.button("Weiter"):
+            if st.button("👉 Weiter zur nächsten Frage", type="primary"):
                 for text, wert in frage["antworten"]:
                     if auswahl == text:
                         st.session_state.punkte.append(wert)
@@ -221,5 +223,37 @@ if spielername:
         st.markdown(f"**Durchschnittlicher Score:** {avg:.2f} von 5")
         st.markdown(f"**⏱️ Gesamtzeit:** {elapsed_time} Sekunden")
 
-        with open(f"{spielername}_ergebnis.txt", "w", encoding="utf-8") as f:
+        import datetime
+from fpdf import FPDF
+
+# PDF-Zertifikat erzeugen
+class Zertifikat(FPDF):
+    def header(self):
+        self.set_font("Arial", "B", 16)
+        self.cell(0, 10, "Sportethik-Quiz Zertifikat", ln=True, align="C")
+        self.ln(10)
+
+    def footer(self):
+        self.set_y(-15)
+        self.set_font("Arial", "I", 8)
+        self.cell(0, 10, f"Erstellt am {datetime.date.today()}", 0, 0, "C")
+
+    def inhalt(self, name, typ, punkte, athlet, dauer):
+        self.set_font("Arial", size=12)
+        self.ln(10)
+        self.multi_cell(0, 10, f"Teilnehmer: {name}
+
+Typ: {typ}
+Durchschnittlicher Score: {punkte:.2f} / 5
+Beispiel-Athlet: {athlet}
+Dauer: {dauer} Sekunden")
+
+pdf = Zertifikat()
+pdf.add_page()
+pdf.inhalt(spielername, typ, avg, athlet, elapsed_time)
+zertifikat_pfad = f"{spielername}_zertifikat.pdf"
+pdf.output(zertifikat_pfad)
+
+with open(zertifikat_pfad, "rb") as f:
+    st.download_button("📄 Zertifikat herunterladen", f, file_name=zertifikat_pfad, mime="application/pdf") as f:
             f.write(f"Spieler: {spielername}\nScore: {avg:.2f}\nTyp: {typ}\nAthlet: {athlet}\nZeit: {elapsed_time} Sekunden")
