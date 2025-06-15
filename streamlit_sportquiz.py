@@ -1,5 +1,3 @@
-# Erweiterte Version des Sportethik-Quiz mit Fortschrittsbalken, Farbe und Auswertung
-
 import streamlit as st
 import time
 
@@ -7,7 +5,7 @@ import time
 st.set_page_config(page_title="Sportethik-Quiz", layout="centered")
 st.markdown("""
     <style>
-    html, body, [data-testid=\"stAppViewContainer\"] > .main {
+    html, body, [data-testid="stAppViewContainer"] > .main {
         background: linear-gradient(to right, #e0f7fa, #ffffff);
         padding: 2rem;
         font-family: 'Segoe UI', sans-serif;
@@ -17,119 +15,109 @@ st.markdown("""
         font-weight: bold;
         color: #007acc;
     }
-    .stProgress > div > div > div > div {
-        background-color: #007acc;
-    }
-    .question-block {
-        background-color: #ffffffcc;
-        padding: 1.5rem;
-        border-radius: 1rem;
-        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-        margin-bottom: 1.5rem;
-    }
     </style>
 """, unsafe_allow_html=True)
 
 # Titel und Einleitung
-st.title("🏅 Sportethik-Quiz")
-st.markdown("**Hey Sportsfreundin oder Sportsfreund!**\n\nWas Fairplay wirklich bedeutet? Finde es heraus – und sei ehrlich zu dir selbst. 💬")
+st.title("⚽ Sportethik-Quiz")
+st.markdown("**Mein Sportsfreund...** Mal sehen, wie fair du bist – sei ehrlich mit dir selbst! 💬")
 spielername = st.text_input("Wie heißt du?")
 
-# Fragen vorbereiten (siehe vorherige vollständige Liste – hier ausgelassen zur Kürze)
+# Fragen vorbereiten
 fragen = [
     {
         "bild": "https://shootscoresoccer.com/wp-content/uploads/2022/01/How-to-Tackle-in-Soccer.jpg",
-        "text": "Ein Spieler foult – was tust du?",
+        "text": "Ein Mitspieler foult, was tust du?",
         "antworten": [
-            ("✅ Ich melde es sofort, Fairplay!", 5),
-            ("😐 Ich warte, ob der Schiri was sieht.", 3),
-            ("❌ Ich schweige, wir müssen den Vorteil nutzen!", 1)
+            ("✅ Ich melde es sofort. Fairplay geht vor!", 5),
+            ("😐 Ich warte ab, ob der Schiri reagiert.", 3),
+            ("❌ Ich schweige. Vorteil nutzen!", 1)
         ]
     },
     {
         "bild": "https://img.zeit.de/sport/2017-03/arjen-robben-schwalbe/wide__1000x562__desktop__scale_2",
-        "text": "Du könntest mit einer Schwalbe einen Elfer bekommen.",
+        "text": "Mit einer Schwalbe könntest du einen Elfer holen, was jetzt?",
         "antworten": [
-            ("✅ Ich bleibe aufrecht.", 5),
-            ("😐 Ich lasse mich leicht fallen…", 3),
-            ("❌ Ich täusche klar, Elfer ist Elfer!", 1)
+            ("✅ Ich bleibe fair und täusche nichts vor.", 5),
+            ("😐 Ich falle leicht, vielleicht merkt es keiner...", 3),
+            ("❌ Ich gehe klar zu Boden. Elfer ist Elfer!", 1)
         ]
     },
     {
         "bild": "https://cdn.dmcl.biz/media/image/99697/o/GettyImages-501532292.jpg",
-        "text": "Ein Freund will, dass du seine Dopingprobe vertauschst.",
+        "text": "Ein Freund bittet dich, seine Dopingprobe zu vertauschen.",
         "antworten": [
-            ("✅ Kommt nicht in Frage, das ist unfair!", 5),
-            ("😐 Ich denke darüber nach…", 3),
-            ("❌ Klar, wir müssen gewinnen!", 1)
+            ("✅ Niemals! Das ist unfair und unsportlich.", 5),
+            ("😐 Ich denke kurz darüber nach...", 3),
+            ("❌ Ich helfe ihm – Hauptsache Sieg!", 1)
         ]
     },
     {
         "bild": "https://www.dbs-npc.de/assets/images/6/20160911-sw-102323-15400-okr_hp-59a2adee.jpg",
-        "text": "Ein Teamkollege springt beim Staffelstart zu früh ins Wasser, aber der Schiedsrichter merkt es nicht. Was tust du?",
+        "text": "Dein Teamkollege springt zu früh ins Wasser, der Schiri merkt es nicht. Was tust du?",
         "antworten": [
-            ("✅ Ich melde den Frühstart, Ehrlichkeit zählt.", 5),
-            ("😐 Ich frage zuerst den Rest des Teams, ob wir es zugeben wollen.", 3),
-            ("❌Ich sage nichts, Pech für die anderen.", 1)
+            ("✅ Ich melde den Frühstart sofort.", 5),
+            ("😐 Ich bespreche es mit dem Team.", 3),
+            ("❌ Ich sage nichts – Glück gehabt!", 1)
         ]
     },
     {
         "bild": "https://cdn.arstechnica.net/wp-content/uploads/2019/04/basketballTOP.jpg",
-        "text": "Du merkst das du den Basketball noch berührt hast bevor er ins aus ging, doch der Schiri gibt euch den Einwurf, was tust du?",
+        "text": "Du warst noch am Ball, bevor er ins Aus ging – der Schiri gibt euch Einwurf.",
         "antworten": [
-            ("✅ Ich sage dem Schiri, dass ich ihn noch berührt habe.", 5),
-            ("😐 Ich warte und schaue ob jemand protestiert.", 3),
-            ("❌ Ich nehme es dankend an und nutze die Chance.", 1)
+            ("✅ Ich sage dem Schiri die Wahrheit.", 5),
+            ("😐 Ich warte ab, ob jemand protestiert.", 3),
+            ("❌ Ich nehme es an – sein Fehler!", 1)
         ]
     },
     {
         "bild": "https://e6.365dm.de/23/02/1600x900/skysport_de-shiffrin-riesenslalom_6059422.jpg?20230216133332",
-        "text": "Beim Riesenslalom bemerkt niemand, dass du ein Tor ausgelassen hast. Du wärst mit der Zeit unter den Top 3. Was tust du?",
+        "text": "Du hast ein Tor ausgelassen bei der Abfahrt – deine Zeit reicht für die Top 3.",
         "antworten": [
-            ("✅ Ich melde es sobald ich unten angekommen bin.", 5),
-            ("😐 Ich hoffe, dass es niemand gesehen hat.", 3),
-            ("❌ Ich sage nichts und hol mir meine Medallie. ", 1)
+            ("✅ Ich breche ab und melde es sofort.", 5),
+            ("😐 Ich hoffe, es hat niemand gesehen.", 3),
+            ("❌ Ich schweige – yes endlich mal eine Medaille!", 1)
         ]
     },
     {
         "bild": "https://static01.nyt.com/images/2014/07/05/sports/sub-brazilcup1/sub-brazilcup1-master1050.jpg",
-        "text": "Ein Gegner liegt verletzt, aber ihr greift an.",
+        "text": "Ein Gegner liegt verletzt. Du bist im Konter mit einer riesen Chance – wie reagierst du?",
         "antworten": [
             ("✅ Ich spiele den Ball ins Aus.", 5),
-            ("😐 Ich zögere erstmal.", 3),
-            ("❌ Ich spiele sofort weiter, wir haben Überzahl!", 1)
+            ("😐 Ich zögere kurz.", 3),
+            ("❌ Ich spiele weiter – Überzahl nutzen!", 1)
         ]
     },
     {
         "bild": "https://www.bestsellerratings.com/content/images/2023/05/Volleyball-team.jpg",
-        "text": "Ihr habt zu viele Spieler auf dem Feld.",
+        "text": "Ihr habt einen Spieler zu viel auf dem Feld – keiner merkt es.",
         "antworten": [
-            ("✅ Ich sage es sofort.", 5),
-            ("😐 Ich tue so, als ob nichts wär.", 3),
-            ("❌ Ich verschweige es aktiv.", 1)
+            ("✅ Ich melde es sofort.", 5),
+            ("😐 Ich tue so, als wüsste ich nichts.", 3),
+            ("❌ Ich schweige aktiv.", 1)
         ]
     },
     {
         "bild": "https://www.felsland-teamtage.de/media/k2/items/cache/867519228d1d5325856fc61d710ded0e_L.jpg",
-        "text": "Du bemerkst, dass dein Zielstand falsch kalibriert ist, der nächste Schütze könnte benachteiligt sein. Was tust du?",
+        "text": "Der Zielstand ist falsch kalibriert – du weißt es.",
         "antworten": [
-            ("✅ Ich melde das sofort dem Kampfrichter.", 5),
-            ("😐 Ich sage es nur, wenn es jemanden auffällt.", 3),
-            ("❌ Ich ignoriere es, betrifft mich nicht.", 1)
+            ("✅ Ich melde es dem Kampfrichter.", 5),
+            ("😐 Nur wenn es jemandem auffällt.", 3),
+            ("❌ Ich ignoriere es – betrifft mich nicht.", 1)
         ]
     },
     {
         "bild": "https://th.bing.com/th/id/R.313f17bdcb36bd1ca50daff3bd2db3e4?rik=cJuPucJIX1YEYQ&pid=ImgRaw&r=0",
-        "text": "Du weisst das dein Gegner im Ring schon mehrfach sein rechtes Bein gebrochen hat und es nie ganz verheilt ist, was tust du?.",
+        "text": "Dein Gegner hatte früher einen Beinbruch – du weißt es, da du ihn von früher kennts.",
         "antworten": [
-            ("✅ Ich trete ihm extra nicht dagegen.", 5),
-            ("😐 Wenn er zu Krass die Oberhand hat, trete ich vielleicht einmal dagegen. ", 3),
-            ("❌ Ich fokussiere mich nur auf das Bein!", 1)
+            ("✅ Ich vermeide das Bein bewusst.", 5),
+            ("😐 Wenn es eng wird, trete ich einmal hin.", 3),
+            ("❌ Ich greife gezielt das Bein an.", 1)
         ]
     },
     {
         "bild": "https://www.si.com/.image/c_fill,w_2160,ar_16:9,f_auto,q_auto,g_auto/MTY4MDI3NDM4MzcwMzM0MDgw/nick-young-postgame-interviewjpg.jpg",
-        "text": "Nach dem Spiel wirst du interviewt: Ehrlich oder nicht?",
+        "text": "Du wirst nach dem Spiel interviewt, ihr habt verloren und die Moral des Teams ist am boden zerstört, der Teamzusammenhalt ist aktuell gleich null – ehrlich oder nicht?",
         "antworten": [
             ("✅ Ich sage die Wahrheit.", 5),
             ("😐 Ich bleibe vage.", 3),
@@ -138,60 +126,56 @@ fragen = [
     },
     {
         "bild": "https://th.bing.com/th/id/R.035ac5351116b3f8d593f50f6019fbdb?rik=QQes4iNVI3m5WA&pid=ImgRaw&r=0",
-        "text": "Beim Bodenturnen lief dir Wettbewerb nicht gut, aber du hast gesehen wie dein Trainer der Jury Geld zusteckte und gewinnst Gold, was tust du?",
+        "text": "Dein Trainer besticht die Jury und deshalb bekommst du Gold trotz Fehlern, dir ist bewusst, die Konkurrenz hat hart dafür gearbeitet und definitv besser performt als du, was nun?",
         "antworten": [
-            ("✅ Ich melde es dem Verband und erkenne den unfairen Sieg nicht an. ", 5),
-            ("😐 Ich warte ab ob jemand sich beklagt und gib es dann zu.", 3),
-            ("❌ Ich sage gar nichts, ich habe nichts gesehen...", 1)
+            ("✅ Ich melde es und verzichte auf den Sieg.", 5),
+            ("😐 Ich warte ab, ob jemand etwas merkt.", 3),
+            ("❌ Ich sage nichts – passt schon!", 1)
         ]
     },
     {
         "bild": "https://www.middleeasteye.net/sites/default/files/styles/article_page/public/images-story/Qatar-World-Cup-Argentina-December-2022-AFP.jpg.webp?itok=zZCpLq3-",
-        "text": "Im Finale sollst du unfair spielen – was tun?",
+        "text": "Beinahe durch ein Wunder gewinnt ihr das Halbfinal. Ihr seid nun der klare Underdog und vor dem Finale wird dir gesagt: Spiel unfair, das ist unsere einzige Chance. Wie entscheidest du?",
         "antworten": [
             ("✅ Ich bleibe meinem Gewissen treu.", 5),
             ("😐 Ich mache mit Bauchweh mit.", 3),
-            ("❌ Ich ziehe’s voll durch!", 1)
+            ("❌ Ich ziehe es voll durch!", 1)
         ]
     }
-]  # Hier steht deine komplette Fragenliste (wie zuvor aktualisiert)
+]
+    },
 
-# Fortschritt und Zustand
+# Zustand & Timer
 if "frage_index" not in st.session_state:
     st.session_state.frage_index = 0
     st.session_state.punkte = []
     st.session_state.timer_start = time.time()
 
-elapsed_time = int(time.time() - st.session_state.timer_start)
-st.markdown(f"⏱️ **Verstrichene Zeit:** {elapsed_time} Sekunden  ")
-st.caption("(Nur zur Orientierung – kein Zeitlimit, nimm dir ruhig Zeit zum Nachdenken!)")
+elapsed = int(time.time() - st.session_state.timer_start)
+st.markdown(f"⏱️ **Verstrichene Zeit:** {elapsed} Sekunden")
+st.caption("(Nur zur Orientierung – du hast unbegrenzt Zeit)")
 
+# Quizlogik
 if spielername:
     frage_index = st.session_state.frage_index
     total_fragen = len(fragen)
 
     if frage_index < total_fragen:
         frage = fragen[frage_index]
+        st.progress((frage_index + 1) / total_fragen)
 
-        # Fortschrittsbalken anzeigen
-        st.progress((frage_index + 1)
-        st.markdown("<style>.element-container:has(.stProgress) + div {display: none;}</style>", unsafe_allow_html=True) / total_fragen)
+        st.markdown(f"#### Frage {frage_index + 1} von {total_fragen}")
+        st.markdown(f"### {frage['text']}")
+        st.image(frage['bild'], use_container_width=True)
 
-        with st.container():
-            st.markdown(f"<div class='question-block'>", unsafe_allow_html=True)
-            st.markdown(f"#### Frage {frage_index + 1} von {total_fragen}")
-            st.markdown(f"### {frage['text']}")
-            st.image(frage["bild"], use_container_width=True)
-
-            auswahl = st.radio("Wähle deine Antwort:", [a[0] for a in frage["antworten"]], key=frage_index)
-            if st.button("👉 Weiter zur nächsten Frage", type="primary"):
-                for text, wert in frage["antworten"]:
-                    if auswahl == text:
-                        st.session_state.punkte.append(wert)
-                        break
-                st.session_state.frage_index += 1
-                st.rerun()
-            st.markdown("</div>", unsafe_allow_html=True)
+        auswahl = st.radio("Wähle deine Antwort:", [a[0] for a in frage['antworten']], key=frage_index)
+        if st.button("👉 Weiter zur nächsten Frage", type="primary"):
+            for text, wert in frage['antworten']:
+                if auswahl == text:
+                    st.session_state.punkte.append(wert)
+                    break
+            st.session_state.frage_index += 1
+            st.rerun()
 
     else:
         avg = sum(st.session_state.punkte) / total_fragen
@@ -221,39 +205,6 @@ if spielername:
         st.markdown(f"**Typ:** {typ}")
         st.markdown(f"**Beispiel-Athlet:** {athlet}")
         st.markdown(f"**Durchschnittlicher Score:** {avg:.2f} von 5")
-        st.markdown(f"**⏱️ Gesamtzeit:** {elapsed_time} Sekunden")
+        st.markdown(f"**⏱️ Gesamtzeit:** {elapsed} Sekunden")
 
-        import datetime
-from fpdf import FPDF
-
-# PDF-Zertifikat erzeugen
-class Zertifikat(FPDF):
-    def header(self):
-        self.set_font("Arial", "B", 16)
-        self.cell(0, 10, "Sportethik-Quiz Zertifikat", ln=True, align="C")
-        self.ln(10)
-
-    def footer(self):
-        self.set_y(-15)
-        self.set_font("Arial", "I", 8)
-        self.cell(0, 10, f"Erstellt am {datetime.date.today()}", 0, 0, "C")
-
-    def inhalt(self, name, typ, punkte, athlet, dauer):
-        self.set_font("Arial", size=12)
-        self.ln(10)
-        self.multi_cell(0, 10, f"Teilnehmer: {name}
-
-Typ: {typ}
-Durchschnittlicher Score: {punkte:.2f} / 5
-Beispiel-Athlet: {athlet}
-Dauer: {dauer} Sekunden")
-
-pdf = Zertifikat()
-pdf.add_page()
-pdf.inhalt(spielername, typ, avg, athlet, elapsed_time)
-zertifikat_pfad = f"{spielername}_zertifikat.pdf"
-pdf.output(zertifikat_pfad)
-
-with open(zertifikat_pfad, "rb") as f:
-    st.download_button("📄 Zertifikat herunterladen", f, file_name=zertifikat_pfad, mime="application/pdf") as f:
-            f.write(f"Spieler: {spielername}\nScore: {avg:.2f}\nTyp: {typ}\nAthlet: {athlet}\nZeit: {elapsed_time} Sekunden")
+    
