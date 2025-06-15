@@ -143,7 +143,6 @@ fragen = [
         ]
     }
 ]
-    },
 
 # Zustand & Timer
 if "frage_index" not in st.session_state:
