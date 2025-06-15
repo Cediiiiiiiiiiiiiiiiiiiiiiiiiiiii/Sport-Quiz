@@ -44,7 +44,7 @@ fragen = [
         ]
     },
     {
-        "bild": "https://cdn.dmcl.biz/media/image/99697/o/GettyImages-501532292.jpg",
+        "bild": "https://www.elgalabwater.com/sites/default/files/inline-images/18.02%20BLOG_Waste%20water%20based%20tracing%20of%20doping%20use.%20img%20number_%20859339256%20%281%29.jpg",
         "text": "Ein Freund bittet dich, seine Dopingprobe zu vertauschen.",
         "antworten": [
             ("✅ Niemals! Das ist unfair und unsportlich.", 5),
@@ -53,7 +53,7 @@ fragen = [
         ]
     },
     {
-        "bild": "https://www.dbs-npc.de/assets/images/6/20160911-sw-102323-15400-okr_hp-59a2adee.jpg",
+        "bild": "https://thumbs.dreamstime.com/b/professional-swimmer-start-swimming-race-close-up-shot-sportswoman-beginning-drive-block-flighting-entering-322535238.jpg",
         "text": "Dein Teamkollege springt zu früh ins Wasser, der Schiri merkt es nicht. Was tust du?",
         "antworten": [
             ("✅ Ich melde den Frühstart sofort.", 5),
@@ -116,7 +116,7 @@ fragen = [
         ]
     },
     {
-        "bild": "https://www.si.com/.image/c_fill,w_2160,ar_16:9,f_auto,q_auto,g_auto/MTY4MDI3NDM4MzcwMzM0MDgw/nick-young-postgame-interviewjpg.jpg",
+        "bild": "https://media-cldnry.s-nbcnews.com/image/upload/t_fit-560w,f_avif,q_auto:eco,dpr_2/newscms/2015_22/586701/stephen-curry-daughter-today-inline-150528.jpg",
         "text": "Du wirst nach dem Spiel interviewt, ihr habt verloren und die Moral des Teams ist am boden zerstört, der Teamzusammenhalt ist aktuell gleich null – ehrlich oder nicht?",
         "antworten": [
             ("✅ Ich sage die Wahrheit.", 5),
@@ -181,7 +181,7 @@ if spielername:
         if avg >= 4.5:
             typ = "🏅 Vorbildsportler"
             athlet = "Roger Federer"
-            bild = "https://upload.wikimedia.org/wikipedia/commons/d/d1/Roger_Federer_%28184150819%29.jpg"
+            bild = "https://images.prismic.io/fft-rg-commun-news/a6e627a7-318a-425b-b9d2-7a8502396ddd_6+-+Roger+Federer+-+Wimbledon+2007+-+Luttiau+Presse+Sports.jpg?auto=compress,format"
         elif avg >= 3.5:
             typ = "📐 Moralischer Stratege"
             athlet = "Lionel Messi"
@@ -193,7 +193,7 @@ if spielername:
         elif avg >= 1.5:
             typ = "🎭 Opportunist"
             athlet = "Diego Maradona"
-            bild = "https://upload.wikimedia.org/wikipedia/commons/5/5f/Maradona_versus_Belgium_1982.jpg"
+            bild = "https://cdn.conmebol.com/wp-content/uploads/2023/10/000_322A2WL-scaled.jpg"
         else:
             typ = "🤑 Egoist"
             athlet = "Flavio Briatore"
