@@ -1,22 +1,41 @@
+# Erweiterte Version des Sportethik-Quiz mit Fortschrittsbalken, Farbe und Auswertung
+
 import streamlit as st
+import time
 
 # Seitenlayout + Style
 st.set_page_config(page_title="Sportethik-Quiz", layout="centered")
 st.markdown("""
     <style>
     html, body, [data-testid="stAppViewContainer"] > .main {
-        background-color: #d0e7ff;
+        background: linear-gradient(135deg, #d0e7ff, #f0f9ff);
         padding: 2rem;
+        font-family: 'Segoe UI', sans-serif;
+    }
+    .cool-score {
+        font-size: 2rem;
+        font-weight: bold;
+        color: #007acc;
+    }
+    .stProgress > div > div > div > div {
+        background-color: #007acc;
+    }
+    .question-block {
+        background-color: #ffffffcc;
+        padding: 1.5rem;
+        border-radius: 1rem;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        margin-bottom: 1.5rem;
     }
     </style>
 """, unsafe_allow_html=True)
 
 # Titel und Einleitung
-st.title("⚽ Sportethik-Quiz")
-st.markdown("**Mein Sportsfreund...** Mal sehen, wie fair du bist – sei doch ehrlich! 💬")
+st.title("🏅 Sportethik-Quiz")
+st.markdown("**Hey Sportsfreundin oder Sportsfreund!**\n\nWas Fairplay wirklich bedeutet? Finde es heraus – und sei ehrlich zu dir selbst. 💬")
 spielername = st.text_input("Wie heißt du?")
 
-# Fragen vorbereiten mit stabilen Bildquellen
+# Fragen vorbereiten (siehe vorherige vollständige Liste – hier ausgelassen zur Kürze)
 fragen = [
     {
         "bild": "https://shootscoresoccer.com/wp-content/uploads/2022/01/How-to-Tackle-in-Soccer.jpg",
@@ -135,33 +154,45 @@ fragen = [
             ("❌ Ich ziehe’s voll durch!", 1)
         ]
     }
-]
+]  # Hier steht deine komplette Fragenliste (wie zuvor aktualisiert)
 
 # Fortschritt und Zustand
 if "frage_index" not in st.session_state:
     st.session_state.frage_index = 0
     st.session_state.punkte = []
+    st.session_state.timer_start = time.time()
+
+elapsed_time = int(time.time() - st.session_state.timer_start)
+st.markdown(f"⏱️ **Verstrichene Zeit:** {elapsed_time} Sekunden")
 
 if spielername:
     frage_index = st.session_state.frage_index
+    total_fragen = len(fragen)
 
-    if frage_index < len(fragen):
+    if frage_index < total_fragen:
         frage = fragen[frage_index]
-        st.markdown(f"#### Frage {frage_index + 1} von {len(fragen)}")
-        st.markdown(f"### {frage['text']}")
-        st.image(frage["bild"], use_container_width=True)
 
-        auswahl = st.radio("Wähle deine Antwort:", [a[0] for a in frage["antworten"]], key=frage_index)
-        if st.button("Weiter"):
-            for text, wert in frage["antworten"]:
-                if auswahl == text:
-                    st.session_state.punkte.append(wert)
-                    break
-            st.session_state.frage_index += 1
-            st.rerun()
+        # Fortschrittsbalken anzeigen
+        st.progress((frage_index + 1) / total_fragen)
+
+        with st.container():
+            st.markdown(f"<div class='question-block'>", unsafe_allow_html=True)
+            st.markdown(f"#### Frage {frage_index + 1} von {total_fragen}")
+            st.markdown(f"### {frage['text']}")
+            st.image(frage["bild"], use_container_width=True)
+
+            auswahl = st.radio("Wähle deine Antwort:", [a[0] for a in frage["antworten"]], key=frage_index)
+            if st.button("Weiter"):
+                for text, wert in frage["antworten"]:
+                    if auswahl == text:
+                        st.session_state.punkte.append(wert)
+                        break
+                st.session_state.frage_index += 1
+                st.rerun()
+            st.markdown("</div>", unsafe_allow_html=True)
 
     else:
-        avg = sum(st.session_state.punkte) / len(st.session_state.punkte)
+        avg = sum(st.session_state.punkte) / total_fragen
         if avg >= 4.5:
             typ = "🏅 Vorbildsportler"
             athlet = "Roger Federer"
@@ -169,14 +200,14 @@ if spielername:
         elif avg >= 3.5:
             typ = "📐 Moralischer Stratege"
             athlet = "Lionel Messi"
-            bild = "https://assets.goal.com/v3/assets/bltcc7a7ffd2fbf71f5/bltf7695f98c1f01bd9/62cbfb91c9db8842cf76cb5b/GHP_MESSI-BOOTS_16-9.jpg?auto=webp&format=pjpg&width=3840&quality=60"
+            bild = "https://assets.goal.com/v3/assets/bltcc7a7ffd2fbf71f5/bltf7695f98c1f01bd9/62cbfb91c9db8842cf76cb5b/GHP_MESSI-BOOTS_16-9.jpg"
         elif avg >= 2.5:
             typ = "⚖️ Kontrollierter Pragmatiker"
             athlet = "Serena Williams"
-            bild = "https://th.bing.com/th/id/OIP.E6ceK3TePOweDrQrvQCMBwHaFj?rs=1&pid=ImgDetMain"
+            bild = "https://th.bing.com/th/id/OIP.E6ceK3TePOweDrQrvQCMBwHaFj"
         elif avg >= 1.5:
             typ = "🎭 Opportunist"
-            athlet = "https://cdn.britannica.com/76/124976-050-E03E50CE/Diego-Maradona-1986.jpg"
+            athlet = "Diego Maradona"
             bild = "https://upload.wikimedia.org/wikipedia/commons/5/5f/Maradona_versus_Belgium_1982.jpg"
         else:
             typ = "🤑 Egoist"
@@ -188,6 +219,7 @@ if spielername:
         st.markdown(f"**Typ:** {typ}")
         st.markdown(f"**Beispiel-Athlet:** {athlet}")
         st.markdown(f"**Durchschnittlicher Score:** {avg:.2f} von 5")
+        st.markdown(f"**⏱️ Gesamtzeit:** {elapsed_time} Sekunden")
 
         with open(f"{spielername}_ergebnis.txt", "w", encoding="utf-8") as f:
-            f.write(f"Spieler: {spielername}\nScore: {avg:.2f}\nTyp: {typ}\nAthlet: {athlet}")
+            f.write(f"Spieler: {spielername}\nScore: {avg:.2f}\nTyp: {typ}\nAthlet: {athlet}\nZeit: {elapsed_time} Sekunden")
