@@ -53,7 +53,7 @@ fragen = [
         ]
     },
     {
-        "bild": "https://thumbs.dreamstime.com/b/professional-swimmer-start-swimming-race-close-up-shot-sportswoman-beginning-drive-block-flighting-entering-322535238.jpg",
+        "bild": "https://3.bp.blogspot.com/-VYX59C3ye7Y/Vq9pFc0ZcwI/AAAAAAAAADc/wJQ8DsqfeIo/s1600/london-olympics-day-1-swimming.jpg",
         "text": "Dein Teamkollege springt zu früh ins Wasser, der Schiri merkt es nicht. Was tust du?",
         "antworten": [
             ("✅ Ich melde den Frühstart sofort.", 5),
@@ -152,7 +152,7 @@ if "frage_index" not in st.session_state:
 
 elapsed = int(time.time() - st.session_state.timer_start)
 st.markdown(f"⏱️ **Verstrichene Zeit:** {elapsed} Sekunden")
-st.caption("(Nur zur Orientierung – du hast unbegrenzt Zeit)")
+st.caption("(Nur zur Orientierung – du hast unbegrenzt Zei. Die Anzeige zeigt nur, wie viel Zeit du dir für das Nachdenken nimmst)")
 
 # Quizlogik
 if spielername:
