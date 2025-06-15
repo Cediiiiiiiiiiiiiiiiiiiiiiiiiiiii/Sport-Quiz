@@ -174,7 +174,7 @@ if spielername:
         frage = fragen[frage_index]
 
         # Fortschrittsbalken anzeigen
-       st.progress((frage_index + 1) / total_fragen)
+        st.progress((frage_index + 1)
         st.markdown("<style>.element-container:has(.stProgress) + div {display: none;}</style>", unsafe_allow_html=True) / total_fragen)
 
         with st.container():
