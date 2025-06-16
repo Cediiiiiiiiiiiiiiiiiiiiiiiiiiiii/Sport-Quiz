@@ -6,22 +6,38 @@ st.set_page_config(page_title="Sportethik-Quiz", layout="centered")
 st.markdown("""
     <style>
     html, body, [data-testid="stAppViewContainer"] > .main {
-        background: linear-gradient(to right, #e0f7fa, #ffffff);
+        background-color: #d0e7ff;
         padding: 2rem;
-        font-family: 'Segoe UI', sans-serif;
-    }
-    .cool-score {
-        font-size: 2rem;
-        font-weight: bold;
-        color: #007acc;
     }
     </style>
 """, unsafe_allow_html=True)
 
-# Titel und Einleitung
-st.title("⚽ Sportethik-Quiz")
-st.markdown("**Mein Sportsfreund...** Mal sehen, wie fair du bist – sei ehrlich mit dir selbst! 💬")
-spielername = st.text_input("Wie heißt du?")
+# Header mit Bild + animierter Begrüßungstext
+st.image("https://cdn-icons-png.flaticon.com/512/854/854878.png", width=100)
+
+st.markdown("""
+    <h1 style='text-align: center; color: #003366;'>⚽ Willkommen zum <span style='color:#00aaff;'>Sportethik-Quiz</span>!</h1>
+    <h3 style='text-align: center; color: #444;'>Mein Sportsfreund...<br>Mal sehen, wie fair du bist – sei ehrlich mit dir selbst! 💬</h3>
+""", unsafe_allow_html=True)
+
+# Name und Start
+spielername = st.text_input("🏷️ Gib deinen Namen ein:", placeholder="z. B. Alex, Lena, Coach K...")
+
+if "start" not in st.session_state:
+    st.session_state.start = False
+
+if not st.session_state.start:
+    if spielername:
+        if st.button("🚀 Los geht’s!"):
+            st.session_state.start = True
+            st.session_state.frage_index = 0
+            st.session_state.punkte = []
+            st.session_state.start_time = time.time()
+            st.experimental_rerun()
+# Ab hier kann dein Quiz-Code weitergeführt werden (wenn gestartet)
+if st.session_state.start:
+    pass  # <- Hier kommt später der Quizcode hin
+
 
 # Fragen vorbereiten
 fragen = [
