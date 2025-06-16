@@ -21,30 +21,7 @@ st.markdown("""
 """, unsafe_allow_html=True)
 
 # Name und Start
-spielername = st.text_input("🏷️ Gib deinen Namen ein:", placeholder="z. B. Alex, Lena, Coach K...")
-
-# Session-State initialisieren
-if "start" not in st.session_state:
-    st.session_state.start = False
-
-# Nur Startansicht anzeigen, wenn noch nicht gestartet
-if not st.session_state.start:
-    if spielername:
-        if st.button("🚀 Los geht’s!"):
-            st.session_state.start = True
-            st.session_state.frage_index = 0
-            st.session_state.punkte = []
-            st.session_state.start_time = time.time()
-            st.success("Das Quiz wurde gestartet!")
-        else:
-            st.info("Drücke den Button, um zu starten.")
-    else:
-        st.warning("Bitte gib zuerst deinen Namen ein.")
-
-# Ab hier kann dein Quiz-Code weitergeführt werden (wenn gestartet)
-if st.session_state.start:
-    # Hier beginnt dein Quiz (z. B. Fragen anzeigen)
-    st.write("Hier beginnt das Quiz... (bitte restlichen Code einfügen)")
+spielername = st.text_input("🏷️ Gib deinen Namen ein:", placeholder="z. B. Cristiano Ronaldo, Usain Bolt, Coach K...")
 
 # Fragen vorbereiten
 fragen = [
