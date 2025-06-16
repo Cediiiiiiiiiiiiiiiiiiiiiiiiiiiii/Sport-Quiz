@@ -152,7 +152,7 @@ if "frage_index" not in st.session_state:
 
 elapsed = int(time.time() - st.session_state.timer_start)
 st.markdown(f"⏱️ **Verstrichene Zeit:** {elapsed} Sekunden")
-st.caption("(Nur zur Orientierung – du hast unbegrenzt Zei. Die Anzeige zeigt nur, wie viel Zeit du dir für das Nachdenken nimmst)")
+st.caption("(Nur zur Orientierung – du hast unbegrenzt Zeit. Die Anzeige zeigt nur, wie viel Zeit du dir für das Nachdenken nimmst)")
 
 # Quizlogik
 if spielername:
