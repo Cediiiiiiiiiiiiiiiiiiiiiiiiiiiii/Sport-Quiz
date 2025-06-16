@@ -104,7 +104,7 @@ fragen = [
     },
     {
         "bild": "https://www.felsland-teamtage.de/media/k2/items/cache/867519228d1d5325856fc61d710ded0e_L.jpg",
-        "text": "Der Zielstand ist falsch kalibriert – du weißt es.",
+        "text": "Der Zielstand ist falsch kalibriert – du weisst es.",
         "antworten": [
             ("✅ Ich melde es dem Kampfrichter.", 5),
             ("😐 Nur wenn es jemandem auffällt.", 3),
