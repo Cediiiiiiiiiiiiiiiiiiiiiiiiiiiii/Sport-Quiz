@@ -2,7 +2,7 @@ import streamlit as st
 import time
 
 # Seitenlayout + Style
-st.set_page_config(page_title="Sportethik-Quiz", layout="centered")
+st.set_page_config(page_title="Sportethik-Quiz", layout="centered") # Setzt Titel und Layout der Seite
 st.markdown("""
     <style>
     html, body, [data-testid="stAppViewContainer"] > .main {
@@ -10,26 +10,26 @@ st.markdown("""
         padding: 2rem;
     }
     </style>
-""", unsafe_allow_html=True)
+""", unsafe_allow_html=True) # Setzt Hintergrundfarbe und Padding per CSS
 
-# Header mit Bild + animierter Begrüßungstext
+# Header mit Bild + animierter Begrüssungstext
 st.markdown("""
     <div style='text-align: center;'>
         <img src='https://www.sportanddev.org/sites/default/files/2023-05/Fairplay_Image.jpg' width='300'/>
     </div>
-""", unsafe_allow_html=True)
+""", unsafe_allow_html=True) # Zeigt zentriertes Begrüssungsbild
 
 
 st.markdown("""
     <h1 style='text-align: center; color: #003366;'>⚽ Willkommen zum <span style='color:#00aaff;'>Sportethik-Quiz</span>!</h1>
     <h3 style='text-align: center; color: #444;'>Mein Sportsfreund...<br>Mal sehen, wie fair du bist – sei ehrlich mit dir selbst! 💬</h3>
-""", unsafe_allow_html=True)
+""", unsafe_allow_html=True) # Titel + Beschreibungstext in HTML mit Stil
 
 # Name und Start
 spielername = st.text_input("🏷️ Gib deinen Namen ein:", placeholder="z. B. Cristiano Ronaldo, Usain Bolt, Coach K...")
 
 # Fragen vorbereiten
-fragen = [
+fragen = [ # Liste von Fragen mit Bild, Text und Antwortoptionen + Punktwert
     {
         "bild": "https://shootscoresoccer.com/wp-content/uploads/2022/01/How-to-Tackle-in-Soccer.jpg",
         "text": "Ein Mitspieler foult, was tust du?",
@@ -147,42 +147,46 @@ fragen = [
             ("❌ Ich ziehe es voll durch!", 1)
         ]
     }
+     # ... (weitere Fragen folgen identisch aufgebaut)
 ]
 
 # Zustand & Timer
 if "frage_index" not in st.session_state:
-    st.session_state.frage_index = 0
-    st.session_state.punkte = []
-    st.session_state.timer_start = time.time()
+    st.session_state.frage_index = 0 # Start bei erster Frage
+    st.session_state.punkte = [] # Leere Liste zur Speicherung der Punkte
+    st.session_state.timer_start = time.time() # Startzeit für Timer
 
-elapsed = int(time.time() - st.session_state.timer_start)
-st.markdown(f"⏱️ **Verstrichene Zeit:** {elapsed} Sekunden")
+elapsed = int(time.time() - st.session_state.timer_start) # Berechnung der verstrichenen Zeit in Sekunden
+st.markdown(f"⏱️ **Verstrichene Zeit:** {elapsed} Sekunden")  # Anzeige der Zeit
 st.caption("(Nur zur Orientierung – du hast unbegrenzt Zeit. Die Anzeige zeigt nur, wie viel Zeit du dir für das Nachdenken nimmst)")
 
 # Quizlogik
-if spielername:
-    frage_index = st.session_state.frage_index
-    total_fragen = len(fragen)
+if spielername:  # Nur starten, wenn Spielername eingegeben ist
+    frage_index = st.session_state.frage_index # Aktuelle Frage
+    total_fragen = len(fragen)  # Anzahl aller Fragen
 
-    if frage_index < total_fragen:
-        frage = fragen[frage_index]
-        st.progress((frage_index + 1) / total_fragen)
+    if frage_index < total_fragen:  # Solange noch Fragen offen sind
+        frage = fragen[frage_index]  # Aktuelle Frage laden
+        st.progress((frage_index + 1) / total_fragen)  # Fortschrittsanzeige
 
-        st.markdown(f"#### Frage {frage_index + 1} von {total_fragen}")
-        st.markdown(f"### {frage['text']}")
-        st.image(frage['bild'], use_container_width=True)
+        st.markdown(f"#### Frage {frage_index + 1} von {total_fragen}") # Fragezähler anzeigen
+        st.markdown(f"### {frage['text']}") # Fragetext anzeigen
+        st.image(frage['bild'], use_container_width=True) # Fragebild anzeigen
 
-        auswahl = st.radio("Wähle deine Antwort:", [a[0] for a in frage['antworten']], key=frage_index)
-        if st.button("👉 Weiter zur nächsten Frage", type="primary"):
-            for text, wert in frage['antworten']:
+        auswahl = st.radio("Wähle deine Antwort:", [a[0] for a in frage['antworten']], key=frage_index) # Antwortoptionen als Radiobutton
+        if st.button("👉 Weiter zur nächsten Frage", type="primary"): # Weiter-Button
+            for text, wert in frage['antworten']: # Auswahl durchgehen
                 if auswahl == text:
-                    st.session_state.punkte.append(wert)
+                    st.session_state.punkte.append(wert)  # Punkte je nach Antwort speichern
                     break
-            st.session_state.frage_index += 1
-            st.rerun()
+            st.session_state.frage_index += 1 # Nächste Frage laden
+            st.rerun()  # Seite neu laden mit neuer Frage
 
     else:
+         # Quizende: Auswertung
         avg = sum(st.session_state.punkte) / total_fragen
+        
+         # Bewertung je nach Punktebereich
         if avg >= 4.5:
             typ = "🏅 Vorbildsportler"
             athlet = "Roger Federer"
@@ -203,12 +207,13 @@ if spielername:
             typ = "🤑 Egoist"
             athlet = "Flavio Briatore"
             bild = "https://www.monaco-tribune.com/wp-content/uploads/2020/11/flavio-briatore-min.jpg"
-
+        
+        # Ergebnisse anzeigen
         st.success(f"**Ergebnis für {spielername}:**")
-        st.image(bild, caption=athlet, width=300)
-        st.markdown(f"**Typ:** {typ}")
-        st.markdown(f"**Beispiel-Athlet:** {athlet}")
-        st.markdown(f"**Durchschnittlicher Score:** {avg:.2f} von 5")
-        st.markdown(f"**⏱️ Gesamtzeit:** {elapsed} Sekunden")
+        st.image(bild, caption=athlet, width=300)  # Bild des zugeordneten Athleten
+        st.markdown(f"**Typ:** {typ}") # Persönlichkeitstyp
+        st.markdown(f"**Beispiel-Athlet:** {athlet}") # Symbolfigur
+        st.markdown(f"**Durchschnittlicher Score:** {avg:.2f} von 5")  # Ø Punkte
+        st.markdown(f"**⏱️ Gesamtzeit:** {elapsed} Sekunden") # Gesamtzeit
 
     
