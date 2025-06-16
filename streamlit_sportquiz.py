@@ -13,7 +13,12 @@ st.markdown("""
 """, unsafe_allow_html=True)
 
 # Header mit Bild + animierter Begrüßungstext
-st.image("https://www.sportanddev.org/sites/default/files/2023-05/Fairplay_Image.jpg", width=800)
+st.markdown("""
+    <div style='text-align: center;'>
+        <img src='https://www.sportanddev.org/sites/default/files/2023-05/Fairplay_Image.jpg' width='300'/>
+    </div>
+""", unsafe_allow_html=True)
+
 
 st.markdown("""
     <h1 style='text-align: center; color: #003366;'>⚽ Willkommen zum <span style='color:#00aaff;'>Sportethik-Quiz</span>!</h1>
